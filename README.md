@@ -20,6 +20,5 @@
   # Installation
 
   ```bash
-# Your terminal commands here
-ls -l
-cd directory_name
+make
+sudo make clean install
