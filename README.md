@@ -22,7 +22,7 @@
   **and many more :)**
 
   # Dmenu
-
+![Preview](https://github.com/Abhra00/suckless/blob/master/preview/2024-05-30-130012_1920x1080_scrot.png)
 # Key Featuters Dmenu
   **1. center**
   
@@ -37,7 +37,7 @@
   **6. xresources**
   
 # St
-
+![Preview](https://github.com/Abhra00/suckless/blob/master/preview/2024-05-30_12-59.png)
 # Key Featuters St
   **1. ligatures**
   
