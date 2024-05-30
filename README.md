@@ -16,3 +16,10 @@
   **6. colorful tags**
   
   **and many more :)**
+
+  # Installation
+
+  ```bash
+# Your terminal commands here
+ls -l
+cd directory_name
