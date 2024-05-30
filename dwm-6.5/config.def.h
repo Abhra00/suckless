@@ -46,9 +46,9 @@ static const int colorfultag              = 1;        /* 0 means use SchemeSel f
 
 /*-------------------------------------------fonts---------------------------------------------*/
 
-static char  font[]                       = "Monospace:size=10";
+static char  font[]                       = "Iosevka:size=10";
 static const char *fonts[]                = { font, "Symbols Nerd Font:size=12", };
-static char dmenufont[]                   = "Monospace:size=10";
+static char dmenufont[]                   = "Iosevka:size=10";
 
 /*-------------------------------------------color definitions---------------------------------------------*/
 
