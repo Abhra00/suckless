@@ -1,1 +1,1 @@
-beautied suckless
+beautified suckless
