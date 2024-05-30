@@ -4,13 +4,15 @@
 
 # Key Featuters
   **1. swallow**
-
   
   **2. scratchpads at any location**
   
-  
   **3. sticky**
+  
   **4. stacker (manualyy move clients in stack)**
+
   **5. clickable blocks**
+  
   **6. colorful tags**
+  
   **and many more :)**
