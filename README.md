@@ -2,7 +2,7 @@
 
 ![Preview](https://github.com/Abhra00/suckless/blob/master/preview/2024-05-30_11-00.png)
 
-# Key Featuters
+# Key Featuters Dwm
   **1. swallow**
   
   **2. scratchpads at any location**
@@ -15,10 +15,42 @@
   
   **6. colorful tags**
   
+  **7. xresorces (pywal support)**
+  
   **and many more :)**
 
-  # Installation
+# Key Featuters Dmenu
+  **1. center**
+  
+  **2. padding**
+  
+  **3. center**
+  
+  **4. borders**
 
+  **5. alpha**
+  
+  **6. xresources**
+  
+
+# Key Featuters St
+  **1. ligatures**
+  
+  **2. boxdraw**
+  
+  **3. scrollback**
+  
+  **4. coloumn resize**
+
+  **5. alpha**
+  
+  **6. xresources**
+
+ **7. follow & copy urls & copy outputs** 
+
+ 
+  # Installation of suckless software
+  
   ```bash
 make
 sudo make clean install
