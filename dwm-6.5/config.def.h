@@ -45,8 +45,10 @@ static int floatposgrid_y           	  = 5;        /* float grid rows */
 static const int colorfultag              = 1;        /* 0 means use SchemeSel for selected non vacant tag */
 
 /*-------------------------------------------fonts---------------------------------------------*/
-static const char *fonts[]          	  = { "JetBrains Mono:size=10", "Symbols Nerd Font:size=12", };
-static const char dmenufont[]       	  = "JetBrains Mono:size=12";
+
+static char  font[]                       = "Monospace:size=10";
+static const char *fonts[]                = { font, "Symbols Nerd Font:size=12", };
+static char dmenufont[]                   = "Monospace:size=10";
 
 /*-------------------------------------------color definitions---------------------------------------------*/
 
@@ -211,9 +213,10 @@ static const Layout layouts[] = {
 
 /*
  * Xresources preferences to load at startup
- * Don't include font as it will break bar padding
  */
 ResourcePref resources[] = {
+                { "font",               STRING,  &font },
+                { "font",               STRING,  &dmenufont },
 		{ "color0",		STRING,	 &normbordercolor },
 		{ "color10",		STRING,	 &selbordercolor },
 		{ "color0",		STRING,	 &normbgcolor },
