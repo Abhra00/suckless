@@ -1,5 +1,7 @@
 # THE NOOB BEAUTIFUL DWM
 
+# DWM
+
 ![Preview](https://github.com/Abhra00/suckless/blob/master/preview/2024-05-30_11-00.png)
 
 # Key Featuters Dwm
@@ -19,6 +21,8 @@
   
   **and many more :)**
 
+  # Dmenu
+
 # Key Featuters Dmenu
   **1. center**
   
@@ -32,6 +36,7 @@
   
   **6. xresources**
   
+# St
 
 # Key Featuters St
   **1. ligatures**
@@ -54,3 +59,8 @@
   ```bash
 make
 sudo make clean install
+```
+# Credits
+[LukeSmith](https://github.com/LukeSmithxyz/dwm)
+[alphab91](https://github.com/elbachir-one/dotfiles)
+[bakkeby](https://github.com/bakkeby/patches)
