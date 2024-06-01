@@ -3581,6 +3581,7 @@ main(int argc, char *argv[])
         if (!(xcon = XGetXCBConnection(dpy)))
                 die("dwm: cannot get xcb connection\n");
 	checkotherwm();
+	XrmInitialize();
 	load_xresources();
 	setup();
 #ifdef __OpenBSD__
