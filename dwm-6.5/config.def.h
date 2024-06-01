@@ -47,7 +47,7 @@ static const int colorfultag              = 1;        /* 0 means use SchemeSel f
 /*-------------------------------------------fonts---------------------------------------------*/
 
 static char  font[]                       = "Iosevka:size=10";
-static const char *fonts[]                = { font, "Symbols Nerd Font:size=12", };
+static const char *fonts[]                = { font, "Noto Sans CJK JP:style=bold:size=12", "Symbols Nerd Font:size=12", };
 static char dmenufont[]                   = "Iosevka:size=10";
 
 /*-------------------------------------------color definitions---------------------------------------------*/
@@ -137,11 +137,11 @@ static const XPoint stickyicon[]    = { {0,0}, {4,0}, {4,8}, {2,6}, {0,8}, {0,0}
 static const XPoint stickyiconbb    = {4,8};	/* defines the bottom right corner of the polygon's bounding box (speeds up scaling) */
 
 /* tagging */
-static const char *tags[]              = { "", "󰉋", "", "", "", "󰍡", "󰊖", "", "󰆩" };
+static const char *tags[]              = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
 static const char *tagsalt[]           = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const int momentaryalttags      = 0;    /* 1 means alttags will show only when key is held down*/
 static const unsigned int ulinepad     = 5;    /* horizontal padding between the underline and tag */
-static const unsigned int ulinestroke  = 4;    /* thickness / height of the underline */
+static const unsigned int ulinestroke  = 2;    /* thickness / height of the underline */
 static const unsigned int ulinevoffset = 0;    /* how far above the bottom of the bar the line should appear */
 static const int ulineall              = 0;    /* 1 to show underline on all tags, 0 for just the active ones */
 
