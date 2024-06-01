@@ -206,8 +206,6 @@ static const Layout layouts[] = {
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-                { "font",               STRING,  &font },
-                { "font",               STRING,  &dmenufont },
 		{ "color0",		STRING,	 &normbordercolor },
 		{ "color10",		STRING,	 &selbordercolor },
 		{ "color0",		STRING,	 &normbgcolor },
