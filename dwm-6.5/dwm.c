@@ -85,21 +85,7 @@
 #define VERSION_MAJOR               0
 #define VERSION_MINOR               0
 #define XEMBED_EMBEDDED_VERSION (VERSION_MAJOR << 16) | VERSION_MINOR
-#define XRDB_LOAD_COLOR(R,V)    if (XrmGetResource(xrdb, R, NULL, &type, &value) == True) { \
-                                  if (value.addr != NULL && strnlen(value.addr, 8) == 7 && value.addr[0] == '#') { \
-                                    int i = 1; \
-                                    for (; i <= 6; i++) { \
-                                      if (value.addr[i] < 48) break; \
-                                      if (value.addr[i] > 57 && value.addr[i] < 65) break; \
-                                      if (value.addr[i] > 70 && value.addr[i] < 97) break; \
-                                      if (value.addr[i] > 102) break; \
-                                    } \
-                                    if (i == 7) { \
-                                      strncpy(V, value.addr, 7); \
-                                      V[7] = '\0'; \
-                                    } \
-                                  } \
-                                }
+
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
@@ -1688,55 +1674,6 @@ killclient(const Arg *arg)
 	}
 }
 
-void
-loadxrdb()
-{
-  Display *display;
-  char * resm;
-  XrmDatabase xrdb;
-  char *type;
-  XrmValue value;
-
-  display = XOpenDisplay(NULL);
-
-  if (display != NULL) {
-    resm = XResourceManagerString(display);
-
-    if (resm != NULL) {
-      xrdb = XrmGetStringDatabase(resm);
-
-      if (xrdb != NULL) {
-	XRDB_LOAD_COLOR("dwm.color1", 	coltag1);
-	XRDB_LOAD_COLOR("dwm.color2", 	coltag2);
-	XRDB_LOAD_COLOR("dwm.color3", 	coltag3);
-	XRDB_LOAD_COLOR("dwm.color4", 	coltag4);
-	XRDB_LOAD_COLOR("dwm.color5", 	coltag5);
-	XRDB_LOAD_COLOR("dwm.color6", 	coltag6);
-	XRDB_LOAD_COLOR("dwm.color7", 	coltag7);
-	XRDB_LOAD_COLOR("dwm.color9", 	coltag8);
-	XRDB_LOAD_COLOR("dwm.color10", 	coltag9);
-        XRDB_LOAD_COLOR("color0",  	termcol0);
-        XRDB_LOAD_COLOR("color1",  	termcol1);
-        XRDB_LOAD_COLOR("color2",  	termcol2);
-        XRDB_LOAD_COLOR("color3",  	termcol3);
-        XRDB_LOAD_COLOR("color4",  	termcol4);
-        XRDB_LOAD_COLOR("color5",  	termcol5);
-        XRDB_LOAD_COLOR("color6",  	termcol6);
-        XRDB_LOAD_COLOR("color7",  	termcol7);
-        XRDB_LOAD_COLOR("color8",  	termcol8);
-        XRDB_LOAD_COLOR("color9",  	termcol9);
-        XRDB_LOAD_COLOR("color10", 	termcol10);
-        XRDB_LOAD_COLOR("color11", 	termcol11);
-        XRDB_LOAD_COLOR("color12", 	termcol12);
-        XRDB_LOAD_COLOR("color13", 	termcol13);
-        XRDB_LOAD_COLOR("color14", 	termcol14);
-        XRDB_LOAD_COLOR("color15", 	termcol15);
-      }
-    }
-  }
-
-  XCloseDisplay(display);
-}
 
 void
 manage(Window w, XWindowAttributes *wa)
@@ -3540,13 +3477,13 @@ xerrorstart(Display *dpy, XErrorEvent *ee)
 void
 xrdb(const Arg *arg)
 {
-  loadxrdb();
-  load_xresources();
-  int i;
-  for (i = 0; i < LENGTH(colors); i++)
-                scheme[i] = drw_scm_create(drw, colors[i], 3);
-  focus(NULL);
-  arrange(NULL);
+    load_xresources();
+
+    for (int i = 0; i < LENGTH(colors); i++)
+        scheme[i] = drw_scm_create(drw, colors[i], 3);
+
+    focus(NULL);
+    arrange(NULL);
 }
 
 Monitor *
@@ -3645,9 +3582,7 @@ main(int argc, char *argv[])
         if (!(xcon = XGetXCBConnection(dpy)))
                 die("dwm: cannot get xcb connection\n");
 	checkotherwm();
-        XrmInitialize();
 	load_xresources();
-        loadxrdb();
 	setup();
 #ifdef __OpenBSD__
        if (pledge("stdio rpath proc exec ps", NULL) == -1)

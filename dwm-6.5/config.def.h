@@ -58,15 +58,6 @@ static char normfgcolor[]           	  = "#d5c4a1";
 static char selfgcolor[]            	  = "#ebdbb2";
 static char selbordercolor[]        	  = "#d65d0e";
 static char selbgcolor[]            	  = "#8ec07c";
-static char coltag1[]                     = "#fabd2f"; // yellow
-static char coltag2[]                     = "#fb4934"; // red
-static char coltag3[]                     = "#83a598"; // blue
-static char coltag4[]                     = "#8ec07c"; // green
-static char coltag5[]                     = "#d3869b"; // purple
-static char coltag6[]                     = "#fe8019"; // orange
-static char coltag7[]                     = "#b8bb26"; // bright green
-static char coltag8[]                     = "#d65d0e"; // bright red
-static char coltag9[]                     = "#458588"; // dark blue
 static char termcol0[]                    = "#282828"; // background
 static char termcol1[]                    = "#cc241d"; // red
 static char termcol2[]                    = "#98971a"; // green
@@ -108,15 +99,15 @@ static char *colors[][3] = {
        [SchemeSel]        = { normfgcolor, normbgcolor,  selbordercolor  },
        [SchemeTitle]      = { selfgcolor,  normbgcolor,  normbordercolor },
        [SchemeTag]        = { selfgcolor,  normbgcolor,  normbordercolor },
-       [SchemeTag1]       = { coltag1,     normbgcolor,  normbordercolor },
-       [SchemeTag2]       = { coltag2,     normbgcolor,  normbordercolor },
-       [SchemeTag3]       = { coltag3,     normbgcolor,  normbordercolor },
-       [SchemeTag4]       = { coltag4,     normbgcolor,  normbordercolor },
-       [SchemeTag5]       = { coltag5,     normbgcolor,  normbordercolor },
-       [SchemeTag6]       = { coltag6,     normbgcolor,  normbordercolor },
-       [SchemeTag7]       = { coltag7,     normbgcolor,  normbordercolor },
-       [SchemeTag8]       = { coltag8,     normbgcolor,  normbordercolor },
-       [SchemeTag9]       = { coltag9,     normbgcolor,  normbordercolor },
+       [SchemeTag1]       = { termcol2,    normbgcolor,  normbordercolor },
+       [SchemeTag2]       = { termcol3,    normbgcolor,  normbordercolor },
+       [SchemeTag3]       = { termcol4,    normbgcolor,  normbordercolor },
+       [SchemeTag4]       = { termcol5,    normbgcolor,  normbordercolor },
+       [SchemeTag5]       = { termcol6,    normbgcolor,  normbordercolor },
+       [SchemeTag6]       = { termcol7,    normbgcolor,  normbordercolor },
+       [SchemeTag7]       = { termcol9,    normbgcolor,  normbordercolor },
+       [SchemeTag8]       = { termcol10,   normbgcolor,  normbordercolor },
+       [SchemeTag9]       = { termcol11,   normbgcolor,  normbordercolor },
        [SchemeLayout]     = { selbgcolor,  normbgcolor,  normbordercolor },
 };
 
@@ -223,6 +214,22 @@ ResourcePref resources[] = {
 		{ "color4",		STRING,	 &normfgcolor },
 		{ "color15",		STRING,	 &selfgcolor },
 		{ "color6",		STRING,	 &selbgcolor },
+		{ "color0",             STRING,  &termcol0 },
+		{ "color1",             STRING,  &termcol1 },
+		{ "color2",             STRING,  &termcol2 },
+		{ "color3",             STRING,  &termcol3 },
+		{ "color4",             STRING,  &termcol4 },
+		{ "color5",             STRING,  &termcol5 },
+		{ "color6",             STRING,  &termcol6 },
+		{ "color7",             STRING,  &termcol7 },
+		{ "color8",             STRING,  &termcol8 },
+		{ "color9",             STRING,  &termcol9 },
+		{ "color10",            STRING,  &termcol10 },
+		{ "color11",            STRING,  &termcol11 },
+		{ "color12",            STRING,  &termcol12 },
+		{ "color13",            STRING,  &termcol13 },
+		{ "color14",            STRING,  &termcol14 },
+		{ "color15",            STRING,  &termcol15 },
 		{ "borderpx",		INTEGER, &borderpx },
 		{ "fborderpx",          INTEGER, &fborderpx },
 		{ "snap",		INTEGER, &snap },
