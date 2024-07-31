@@ -2,25 +2,23 @@
 /* Default settings; can be overriden by command line. */
 
 static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom */
-static int vertpad = 10;              /* vertical padding of bar */
-static int sidepad = 10;              /* horizontal padding of bar */
 static int colorprompt = 1;                 /* -p  option; if 1, prompt uses SchemeSel, otherwise SchemeNorm */
 static int centered = 0;                    /* -c option; centers dmenu on screen */
 static int min_width = 500;                 /* minimum width when centered */
 static const unsigned int alpha = 0xff;     /* Amount of opacity. 0xff is opaque */
 /* -fn option overrides fonts[0]; default X11 font or font set */
-static char font[] = "Iosevka:size=10";
-static char *fonts[] = {
+static char font[] = "IosevkaMayukaiCodePro:size=10";
+static const char *fonts[] = {
        font,
        "NotoColorEmoji:pixelsize=8:antialias=true:autohint=true"
 };
 
 static char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 
-static char normfgcolor[] = "#ebdbb2";
-static char normbgcolor[] = "#1d2021";
-static char selfgcolor[]  = "#1d2021";
-static char selbgcolor[]  = "#689d6a";
+static char normfgcolor[] = "#bbbbbb";
+static char normbgcolor[] = "#222222";
+static char selfgcolor[]  = "#eeeeee";
+static char selbgcolor[]  = "#005577";
 static char *colors[SchemeLast][2] = {
 	/*               fg           bg         */
         [SchemeNorm] = { normfgcolor, normbgcolor },
@@ -51,12 +49,9 @@ static unsigned int border_width = 2;
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-        { "font",        STRING,  &font },
         { "color15",     STRING,  &normfgcolor },
         { "color0",      STRING,  &normbgcolor },
         { "color0",      STRING,  &selfgcolor },
         { "color4",      STRING,  &selbgcolor },
         { "prompt",      STRING,  &prompt },
-	{ "vertpad",     INTEGER, &vertpad },
-	{ "sidepad",     INTEGER, &sidepad },
 };

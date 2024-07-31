@@ -17,8 +17,8 @@ config.h:
 
 st.o: config.h st.h win.h
 x.o: arg.h config.h st.h win.h hb.h
-boxdraw.o: config.h st.h boxdraw_data.h
 hb.o: st.h
+boxdraw.o: config.h st.h boxdraw_data.h
 
 $(OBJ): config.h config.mk
 
@@ -49,9 +49,15 @@ install: st
 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/st.1
 	tic -sx st.info
 	@echo Please see the README file regarding the terminfo entry of st.
+	mkdir -p $(DESTDIR)$(APPPREFIX)
+	cp -f st.desktop $(DESTDIR)$(APPPREFIX)
+	mkdir -p $(DESTDIR)$(ICONPREFIX)
+	[ -f $(ICONNAME) ] && cp -f $(ICONNAME) $(DESTDIR)$(ICONPREFIX) || :
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/st
+	rm -f $(DESTDIR)$(APPPREFIX)/st.desktop
 	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
+	rm -f $(DESTDIR)$(ICONPREFIX)/$(ICONNAME)
 
 .PHONY: all clean dist install uninstall

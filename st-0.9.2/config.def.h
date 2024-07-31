@@ -5,12 +5,13 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Iosevka:pixelsize=12:antialias=true:autohint=true";
+static char *font = "monospace:pixelsize=12:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
-	"FantasqueSansM Nerd Font:pixelsize=14:antialias=true:autohint=true",
 	"NotoColorEmoji:pixelsize=10:antialias=true:autohint=true",
 };
+
+static int borderpx = 2;
 
 
 /* disable bold, italic and roman fonts globally */
@@ -18,8 +19,7 @@ int disablebold = 0;
 int disableitalic = 1;
 int disableroman = 1;
 
-/* borders */ 
-static int borderpx = 15;
+
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -61,12 +61,6 @@ int allowaltscreen = 1;
 int allowwindowops = 0;
 
 /*
- * Synchronized-Update timeout in ms
- * https://gitlab.com/gnachman/iterm2/-/wikis/synchronized-updates-spec
- */
-static uint su_timeout = 200;
-
-/*
  * draw latency range in ms - from new content/keypress/etc until drawing.
  * within this range, st draws when content stops arriving (idle). mostly it's
  * near minlatency, but it waits longer for slow updates to avoid partial draw.
@@ -74,6 +68,12 @@ static uint su_timeout = 200;
  */
 static double minlatency = 8;
 static double maxlatency = 33;
+
+/*
+ * Synchronized-Update timeout in ms
+ * https://gitlab.com/gnachman/iterm2/-/wikis/synchronized-updates-spec
+ */
+static uint su_timeout = 200;
 
 /*
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
@@ -93,10 +93,10 @@ static unsigned int cursorthickness = 2;
  * 0: disable (render all U25XX glyphs normally from the font).
  */
 const int boxdraw = 1;
-const int boxdraw_bold = 0;
+const int boxdraw_bold = 1;
 
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
-const int boxdraw_braille = 0;
+const int boxdraw_braille = 1;
 
 /*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
@@ -125,52 +125,58 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.95;
-float alpha_def;
+float alpha = 1.0;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-        "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
-        "#cc241d",
-        "#98971a",
-        "#d79921",
-        "#458588",
-        "#b16286",
-        "#689d6a",
-        "#a89984",
-        "#928374",
-        "#fb4934",
-        "#b8bb26",
-        "#fabd2f",
-        "#83a598",
-        "#d3869b",
-        "#8ec07c",
-        "#ebdbb2",
-        [255] = 0,
-        /* more colors can be added after 255 to use with DefaultXX */
-        "#add8e6", /* 256 -> cursor */
-        "#555555", /* 257 -> rev cursor*/
-        "#282828", /* 258 -> bg */
-        "#ebdbb2", /* 259 -> fg */
+    "#26233a",
+    "#eb6f92",
+    "#9ccfd8",
+    "#f6c177",
+    "#31748f",
+    "#c4a7e7",
+    "#ebbcba",
+    "#e0def4",
+    "#6e6a86",
+    "#eb6f92",
+    "#9ccfd8",
+    "#f6c177",
+    "#31748f",
+    "#c4a7e7",
+    "#ebbcba",
+    "#e0def4",
+    [255] = 0,
+    /* more colors can be added after 255 to use with DefaultXX */
+    "#e0def4", /* cursorcolor */
+    "#e0def4", /* reverse cursor color */
+    "#e0def4", /* default foreground color */
+    "#191724", /* default background color */
 };
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 259;
-unsigned int defaultbg = 258;
+unsigned int defaultfg = 258;
+unsigned int defaultbg = 259;
 unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
 
 /*
- * Default shape of cursor
- * 2: Block ("█")
- * 4: Underline ("_")
- * 6: Bar ("|")
- * 7: Snowman ("☃")
+ * https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h4-Functions-using-CSI-_-ordered-by-the-final-character-lparen-s-rparen:CSI-Ps-SP-q.1D81
+ * Default style of cursor
+ * 0: blinking block
+ * 1: blinking block (default)
+ * 2: steady block ("█")
+ * 3: blinking underline
+ * 4: steady underline ("_")
+ * 5: blinking bar
+ * 6: steady bar ("|")
+ * 7: blinking st cursor
+ * 8: steady st cursor
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorstyle = 5;
+static Rune stcursor = 0x2603; /* snowman ("☃") */
 
 /*
  * Default columns and rows numbers
@@ -193,46 +199,6 @@ static unsigned int mousebg = 0;
 static unsigned int defaultattr = 11;
 
 /*
- * Xresources preferences to load at startup
- */
-ResourcePref resources[] = {
-                { "font",         STRING,  &font },
-                { "color0",       STRING,  &colorname[0] },
-                { "color1",       STRING,  &colorname[1] },
-                { "color2",       STRING,  &colorname[2] },
-                { "color3",       STRING,  &colorname[3] },
-                { "color4",       STRING,  &colorname[4] },
-                { "color5",       STRING,  &colorname[5] },
-                { "color6",       STRING,  &colorname[6] },
-                { "color7",       STRING,  &colorname[7] },
-                { "color8",       STRING,  &colorname[8] },
-                { "color9",       STRING,  &colorname[9] },
-                { "color10",      STRING,  &colorname[10] },
-                { "color11",      STRING,  &colorname[11] },
-                { "color12",      STRING,  &colorname[12] },
-                { "color13",      STRING,  &colorname[13] },
-                { "color14",      STRING,  &colorname[14] },
-                { "color15",      STRING,  &colorname[15] },
-                { "background",   STRING,  &colorname[258] },
-                { "foreground",   STRING,  &colorname[259] },
-                { "cursorColor",  STRING,  &colorname[256] },
-                { "termname",     STRING,  &termname },
-                { "shell",        STRING,  &shell },
-                { "minlatency",   INTEGER, &minlatency },
-                { "maxlatency",   INTEGER, &maxlatency },
-                { "blinktimeout", INTEGER, &blinktimeout },
-                { "bellvolume",   INTEGER, &bellvolume },
-                { "tabspaces",    INTEGER, &tabspaces },
-                { "borderpx",     INTEGER, &borderpx },
-                { "cwscale",      FLOAT,   &cwscale },
-                { "chscale",      FLOAT,   &chscale },
-		{ "alpha",        FLOAT,   &alpha },
-};
-
-
-
-
-/*
  * Force mouse select/shortcuts while mask is active (when MODE_MOUSE is set).
  * Note that if you want to use ShiftMask with selmasks, set this to an other
  * modifier, set to 0 to not use it.
@@ -243,7 +209,6 @@ static uint forcemousemod = ShiftMask;
  * Internal mouse shortcuts.
  * Beware that overloading Button1 will disable the selection.
  */
-
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   	function        argument       			release       altscreen	*/
 	{ XK_ANY_MOD,           Button4, 	kscrollup,      {.i = 5},			0,            -1 },
@@ -255,16 +220,15 @@ static MouseShortcut mshortcuts[] = {
 	{ XK_ANY_MOD,           Button5, 	ttysend,        {.s = "\005"} 			  		 },
 };
 
-/* Internal keyboard shortcuts. */
-#define MODKEY Mod1Mask
-#define TERMMOD (ControlMask|ShiftMask)
-
 
 /* external pipe script */
 static char *openurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -o", "externalpipe", NULL };
 static char *copyurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -c", "externalpipe", NULL };
 static char *copyoutput[] = { "/bin/sh", "-c", "st-copyout", "externalpipe", NULL };
 
+/* Internal keyboard shortcuts. */
+#define MODKEY Mod1Mask
+#define TERMMOD (Mod1Mask|ShiftMask)
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
@@ -277,20 +241,35 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
-	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
+	{ MODKEY,               XK_c,           clipcopy,       {.i =  0} },
+	{ ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
+	{ MODKEY,               XK_v,           clippaste,      {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
-	{ MODKEY,		XK_j,		kscrollup,      {.i = -2} },
-	{ MODKEY,               XK_k,           kscrolldown,    {.i = -2} }, 
-        { MODKEY,               XK_a,           chgalpha,       {.f = -1} }, /* Decrease opacity */
-        { MODKEY,               XK_d,           chgalpha,       {.f = +1} }, /* Increase opacity */
-        { MODKEY,               XK_s,           chgalpha,       {.f =  0} }, /* Reset opacity */
-        { MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd } },
-        { MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
-        { MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
+	{ MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
+	{ MODKEY,               XK_Page_Down,   kscrolldown,    {.i = -1} },
+	{ MODKEY,               XK_k,           kscrollup,      {.i =  1} },
+	{ MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
+	{ MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
+	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
+	{ MODKEY,               XK_u,           kscrollup,      {.i = -1} },
+	{ MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
+	{ MODKEY,		XK_s,		changealpha,	{.f = -0.05} },
+	{ MODKEY,		XK_a,		changealpha,	{.f = +0.05} },
+	{ MODKEY,               XK_m,           changealpha,    {.f = +2.00} },
+	{ TERMMOD,              XK_Up,          zoom,           {.f = +1} },
+	{ TERMMOD,              XK_Down,        zoom,           {.f = -1} },
+	{ TERMMOD,              XK_K,           zoom,           {.f = +1} },
+	{ TERMMOD,              XK_J,           zoom,           {.f = -1} },
+	{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
+	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
+	{ MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd } },
+	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
+	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
 };
+
 
 /*
  * Special keys (change & recompile st.info accordingly)
@@ -561,3 +540,27 @@ static char ascii_printable[] =
 	" !\"#$%&'()*+,-./0123456789:;<=>?"
 	"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
 	"`abcdefghijklmnopqrstuvwxyz{|}~";
+
+/**
+ * Undercurl style. Set UNDERCURL_STYLE to one of the available styles.
+ *
+ * Curly: Dunno how to draw it *shrug*
+ *  _   _   _   _
+ * ( ) ( ) ( ) ( )
+ *	 (_) (_) (_) (_)
+ *
+ * Spiky:
+ * /\  /\   /\	/\
+ *   \/  \/	  \/
+ *
+ * Capped:
+ *	_     _     _
+ * / \   / \   / \
+ *    \_/   \_/
+ */
+// Available styles
+#define UNDERCURL_CURLY 0
+#define UNDERCURL_SPIKY 1
+#define UNDERCURL_CAPPED 2
+// Active style
+#define UNDERCURL_STYLE UNDERCURL_SPIKY
