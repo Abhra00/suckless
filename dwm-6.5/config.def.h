@@ -153,7 +153,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
+	{ "[]",      tile },    /* first entry is default */
 	{ "[M]",      monocle },
 	{ "[@]",      spiral },
 	{ "[\\]",     dwindle },
@@ -260,6 +260,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_a,      	togglescratch,  {.ui = 0 } },
 	{ MODKEY|ShiftMask,             XK_s,      	togglescratch,  {.ui = 1 } },
 	{ MODKEY|ShiftMask,             XK_d,      	togglescratch,  {.ui = 2 } },
+	{ MODKEY|ShiftMask,             XK_f,      	togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      	view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      	tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  	focusmon,       {.i = -1 } },
@@ -275,6 +276,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_g,           shifttag,       { .i = -1 } },
 	{ MODKEY,                       XK_semicolon,   shiftview,      { .i = 0 } },
 	{ MODKEY|ShiftMask,             XK_semicolon,   shifttag,       { .i = 1 } },
+        { MODKEY|ControlMask,           XK_comma,  	cyclelayout,    {.i = -1 } },
+        { MODKEY|ControlMask,           XK_period, 	cyclelayout,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_q,      	quit,           {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      	quit,           {1} }, 
 	{ 0,         XF86XK_AudioMute,	          	spawn,	        {.v = vol_mute } },

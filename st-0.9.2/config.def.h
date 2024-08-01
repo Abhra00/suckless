@@ -129,28 +129,33 @@ float alpha = 1.0;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-    "#26233a",
-    "#eb6f92",
-    "#9ccfd8",
-    "#f6c177",
-    "#31748f",
-    "#c4a7e7",
-    "#ebbcba",
-    "#e0def4",
-    "#6e6a86",
-    "#eb6f92",
-    "#9ccfd8",
-    "#f6c177",
-    "#31748f",
-    "#c4a7e7",
-    "#ebbcba",
-    "#e0def4",
+   
+    /* 8 normal colors */
+    "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
+    "#ea6962", /* red     */
+    "#a9b665", /* green   */
+    "#d8a657", /* yellow  */
+    "#7daea3", /* blue    */
+    "#d3869b", /* magenta */
+    "#89b482", /* cyan    */
+    "#d4be98", /* white   */
+
+    /* 8 bright colors */
+    "#928374", /* black   */
+    "#ef938e", /* red     */
+    "#bbc585", /* green   */
+    "#e1bb7e", /* yellow  */
+    "#9dc2ba", /* blue    */
+    "#e1acbb", /* magenta */
+    "#a7c7a2", /* cyan    */
+    "#e2d3ba", /* white   */
     [255] = 0,
+
     /* more colors can be added after 255 to use with DefaultXX */
-    "#e0def4", /* cursorcolor */
-    "#e0def4", /* reverse cursor color */
-    "#e0def4", /* default foreground color */
-    "#191724", /* default background color */
+    "#282828", /* cursorcolor */
+    "#e2d3ba", /* reverse cursor color */
+    "#e2d3ba", /* default foreground color */
+    "#1d2021", /* default background color */
 };
 
 /*
