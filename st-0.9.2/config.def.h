@@ -128,44 +128,45 @@ unsigned int tabspaces = 8;
 float alpha = 1.0;
 
 /* Terminal colors (16 first used in escape sequence) */
+/* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-   
     /* 8 normal colors */
-    "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
-    "#ea6962", /* red     */
-    "#a9b665", /* green   */
-    "#d8a657", /* yellow  */
-    "#7daea3", /* blue    */
-    "#d3869b", /* magenta */
-    "#89b482", /* cyan    */
-    "#d4be98", /* white   */
+    "#232526", /* black     */
+    "#df5b61", /* red       */
+    "#78b892", /* green     */
+    "#e88467", /* yellow    */
+    "#5a84bc", /* blue      */
+    "#bc83e3", /* magenta   */
+    "#67afc1", /* cyan      */
+    "#e4e6e7", /* white     */
 
     /* 8 bright colors */
-    "#928374", /* black   */
-    "#ef938e", /* red     */
-    "#bbc585", /* green   */
-    "#e1bb7e", /* yellow  */
-    "#9dc2ba", /* blue    */
-    "#e1acbb", /* magenta */
-    "#a7c7a2", /* cyan    */
-    "#e2d3ba", /* white   */
+    "#2c2e2f", /* black (bright)   */
+    "#e8646a", /* red (bright)     */
+    "#81c19b", /* green (bright)   */
+    "#e79881", /* yellow (bright)  */
+    "#709ad2", /* blue (bright)    */
+    "#c58cec", /* magenta (bright) */
+    "#70b8ca", /* cyan (bright)    */
+    "#f2f4f5", /* white (bright)   */
     [255] = 0,
 
     /* more colors can be added after 255 to use with DefaultXX */
-    "#e2d3ba", /* cursorcolor */
-    "#282828", /* reverse cursor color */
-    "#e2d3ba", /* default foreground color */
-    "#1d2021", /* default background color */
+    "#edeff0", /* cursorcolor */
+    "#0c0e0f", /* reverse cursor color */
+    "#edeff0", /* default foreground color */
+    "#0c0e0f", /* default background color */
 };
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 258;
-unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultfg = 258; /* #edeff0 (color 15) */
+unsigned int defaultbg = 259; /* #0c0e0f (color 0) */
+unsigned int defaultcs = 255; /* #edeff0 (cursor color) */
+static unsigned int defaultrcs = 256; /* #0c0e0f (reverse cursor color) */
+
 
 /*
  * https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h4-Functions-using-CSI-_-ordered-by-the-final-character-lparen-s-rparen:CSI-Ps-SP-q.1D81
