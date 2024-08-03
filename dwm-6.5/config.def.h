@@ -217,7 +217,11 @@ static const char *emojicmd[]   = { "dmenuunicode",   NULL };
 static const char *torrentcmd[] = { "td-toggle",   NULL };
 
 /* screenshotcmd */
-static const char *sscmd[]      = { "flameshot", "gui", NULL };
+static const char *sscmd[]      = { "maimshot",  NULL };
+
+/* {mount/unmount}cmd */
+static const char *mountcmd[]      = { "mounter",  NULL };
+static const char *unmountcmd[]    = { "unmounter",  NULL };
 
 
 static const Key keys[] = {
@@ -278,6 +282,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_semicolon,   shifttag,       { .i = 1 } },
         { MODKEY|ControlMask,           XK_comma,  	cyclelayout,    {.i = -1 } },
         { MODKEY|ControlMask,           XK_period, 	cyclelayout,    {.i = +1 } },
+	{ MODKEY,			XK_F2,          spawn,          {.v = mountcmd } },
+	{ MODKEY,			XK_F3,          spawn,          {.v = unmountcmd } },
 	{ MODKEY|ShiftMask,             XK_q,      	quit,           {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      	quit,           {1} }, 
 	{ 0,         XF86XK_AudioMute,	          	spawn,	        {.v = vol_mute } },
