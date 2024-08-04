@@ -275,7 +275,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, 	focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  	tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, 	tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_F5,     	xrdb,           {.v = NULL } },
+	{ MODKEY,                       XK_F1,     	xrdb,           {.v = NULL } },
 	{ MODKEY,                       XK_a,      	togglegaps,     {0} },
 	{ MODKEY|ControlMask,           XK_a,      	defaultgaps,    {0} },
 	{ MODKEY,                       XK_z,      	incrgaps,       {.i = +3 } },
