@@ -131,7 +131,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title            tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",     NULL,       NULL,            0,         1,          0,           0,        -1 },
-	{ "Firefox",  NULL,       NULL,            1 << 8,    0,          0,          -1,        -1 },
+	{ "firefox",  NULL,       NULL,            1 << 2,    0,          0,          -1,        -1 },
 	{ "st",       NULL,       NULL,            0,         0,          1,           0,        -1 },
 	{ NULL,	      "spterm",   NULL,		   SPTAG(0),  1,	  0,	       0, 	 -1 },
 	{ NULL,	      "spfm",     NULL,		   SPTAG(1),  1,	  0,           0,	 -1 },
@@ -196,32 +196,36 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *pmenucmd[] = { "pmenu", NULL };
+static const char *dmenucmd[] 	   = { "dmenu_run", "-m", dmenumon, NULL };
+static const char *termcmd[]  	   = { "st", NULL };
+static const char *pmenucmd[] 	   = { "pmenu", NULL };
 
 /* volume control */
-static const char *vol_up[]   = { "volume", "up",   NULL };
-static const char *vol_down[] = { "volume", "down", NULL };
-static const char *vol_mute[] = { "volume", "mute", NULL };
-static const char *mic_mute[] = { "audiomicmute",   NULL };
+static const char *vol_up[]   	   = { "volume", "up",   NULL };
+static const char *vol_down[] 	   = { "volume", "down", NULL };
+static const char *vol_mute[] 	   = { "volume", "mute", NULL };
+static const char *mic_mute[]      ={ "audiomicmute",   NULL };
 
 /* brightness control */
-static const char *light_up[]   = { "backlight", "up",   NULL };
-static const char *light_down[] = { "backlight", "down", NULL };
+static const char *light_up[]      = { "backlight", "up",   NULL };
+static const char *light_down[]    = { "backlight", "down", NULL };
 
 /* dmenuemojicmd */
-static const char *emojicmd[]   = { "dmenuunicode",   NULL };
+static const char *emojicmd[]      = { "dmenuunicode",   NULL };
 
 /* torrentcmd */
-static const char *torrentcmd[] = { "td-toggle",   NULL };
+static const char *torrentcmd[]    = { "td-toggle",   NULL };
 
 /* screenshotcmd */
-static const char *sscmd[]      = { "maimshot",  NULL };
+static const char *sscmd[]         = { "maimshot",  NULL };
 
 /* {mount/unmount}cmd */
 static const char *mountcmd[]      = { "mounter",  NULL };
 static const char *unmountcmd[]    = { "unmounter",  NULL };
+
+/* networking-cmds */
+static const char *netmancmd[]     = { "dmenu-netman",  NULL };
+static const char *bluemancmd[]    = { "dmenu-bluetooth",  NULL };
 
 
 static const Key keys[] = {
@@ -284,6 +288,8 @@ static const Key keys[] = {
         { MODKEY|ControlMask,           XK_period, 	cyclelayout,    {.i = +1 } },
 	{ MODKEY,			XK_F2,          spawn,          {.v = mountcmd } },
 	{ MODKEY,			XK_F3,          spawn,          {.v = unmountcmd } },
+	{ MODKEY,			XK_F4,          spawn,          {.v = netmancmd } },
+	{ MODKEY,			XK_F5,          spawn,          {.v = bluemancmd } },
 	{ MODKEY|ShiftMask,             XK_q,      	quit,           {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      	quit,           {1} }, 
 	{ 0,         XF86XK_AudioMute,	          	spawn,	        {.v = vol_mute } },
